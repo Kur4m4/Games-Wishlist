@@ -23,7 +23,7 @@ export class GamesWishlistPage {
     this.user_id = navParams.get("user_id");
   }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     this.getUserWishlist();
   }
 

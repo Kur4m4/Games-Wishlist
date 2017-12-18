@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SQLiteObject } from '@ionic-native/sqlite';
 import { DatabaseProvider } from '../database/database';
-import { PlatformsProvider, Platform } from '../platforms/platforms';
 
 /*
   Generated class for the GamesProvider provider.
@@ -12,7 +11,7 @@ import { PlatformsProvider, Platform } from '../platforms/platforms';
 @Injectable()
 export class GamesProvider {
 
-  constructor(private dbProvider: DatabaseProvider, private platformsProvider: PlatformsProvider) { };
+  constructor(private dbProvider: DatabaseProvider) { };
 
   public insert(game: Game) {
     return this.dbProvider.getDB().then((db: SQLiteObject) => {
@@ -51,9 +50,6 @@ export class GamesProvider {
           let games: any[] = [];
           for (var i = 0; i < data.rows.length; i++) {
             var game = data.rows.item(i);
-            this.platformsProvider.getPlatform(game.platform_id).then((platform: Platform) => {
-              game.platform = platform;
-            });
             games.push(game);
           }
           return games;
@@ -70,5 +66,4 @@ export class Game {
   title: string;
   user_id: number;
   platform_id: number;
-  platform: Platform;
 }

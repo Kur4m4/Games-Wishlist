@@ -15,10 +15,14 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let game of games" (click)="editGame(game)">
-      <h2>{{game.title}}</h2>
-      <p>{{game.platform.name}}</p>
-    </ion-item>
+    <ion-item-sliding *ngFor="let game of games">
+      <ion-item (click)="editGame(game)">
+        <h2>{{game.title}}</h2>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button color="danger" (click)="removeGame(game)">Excluir</button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
   <ion-fab right bottom>
     <button ion-fab (click)="addGame()"><ion-icon name="add"></ion-icon></button>
